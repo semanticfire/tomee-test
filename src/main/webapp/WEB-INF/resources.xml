@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!--
+  use org.apache.openejb.config.sys.MapFactory as class-name to get directly Properties
+  you can reference another service as property value using "$" and a resource as "@", ex:
+  myProp = $myOtherService
+  -->
+  
+  <Service id="classResources" class-name="org.apache.openejb.config.sys.MapFactory">
+  com.example.Demo=test.jsp
+   </Service>
+  <Service id="beanNames" class-name="org.apache.openejb.config.sys.MapFactory">
+  com.example.Demo=it
+  </Service>
+  <Service id="dispatchProvider" class-name="org.apache.cxf.jaxrs.provider.RequestDispatcherProvider">
+    classResources = $classResources
+    logRedirects=true
+    beanNames = $beanNames
+  </Service>
+</resources>
